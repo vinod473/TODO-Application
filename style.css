@@ -27,8 +27,8 @@ form input, form button{
     padding:0.5rem;
 }
 form button{
-    color: rgb(118, 193, 14);
-    background: #f7fffe;
+    color: rgb(139, 213, 36);
+    background: #f0f1f1;
     cursor: pointer;
     transition: all 0.5 ease;
 }
@@ -54,24 +54,40 @@ form button:hover{
 }
 .todo-div{
     display: flex;
-    margin: 0.5rem;
-    padding: 0.6rem;
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     align-items: center;
     color: black;
     background: white;
+    margin:0.8rem;
+    padding-left: 1rem;
+    transition: all 0.5s ease;
 }
 .complete-btn, .delete-btn{
-    background-color: white;
+    color: white;
     border:none;
     cursor: pointer;
-    font-size: 2rem;
-    margin:0.2rem;
-    padding:0.2rem;
+    font-size: 2.2rem;
+    padding: 0.5rem;
+    outline:none;
 }
 .delete-btn{
-    color: rgb(160, 12, 12);
+    background: rgb(160, 12, 12);
 }
 .complete-btn{
     color: green;
+}
+.fa-trash{
+    font-size: 1.8rem;
+}
+ /* To disbale event clicking on icon */
+.fa-trash, .fa-check{
+    pointer-events: none;
+}
+.completed{
+    text-decoration: line-through;
+    opacity:0.5;
+}
+.fall{
+    transform: translateY(4rem) rotateZ(20deg);
+    opacity:0;
 }
