@@ -31,6 +31,7 @@ form button{
     background: #f0f1f1;
     cursor: pointer;
     transition: all 0.5 ease;
+    outline: none;
 }
 form input{
     outline: none;
@@ -90,4 +91,36 @@ form button:hover{
 .fall{
     transform: translateY(4rem) rotateZ(20deg);
     opacity:0;
+}
+.select{
+    margin: 2rem;
+    overflow: hidden;
+    position: relative;
+}
+select{
+    width: 13rem;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;   
+    border-radius: 0;
+    color: #289136;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding: 0.3rem;
+}
+.select::after{
+    content: "\25BC";
+    background: #96e6a1;
+    pointer-events: none;
+    position: absolute;
+    top:0.7rem;
+    right:0;
+    font-size: 1.4rem;
+    padding:0.3rem;
+    color:white;
+    transition: all 0.5s ease;
+}
+.select:hover::after{
+    background: white;
+    color: #289136;
 }

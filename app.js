@@ -1,42 +1,46 @@
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list'); 
 const todoInput = document.querySelector('.todo-input');
+const filterOption = document.querySelector('.filter-todo');
 
 document.addEventListener('DOMContentLoaded',getTodos);
 
 todoButton.addEventListener('click',addTodo);
 
-function addTodo(e){
-    
-    //saving to local storage
-    saveLocalTodos(todoInput.value);
+filterOption.addEventListener('click',addFilterTodo);
 
+function addTodo(e){
     //disable default behaviour(here submitting form)
     e.preventDefault();
-    const todoDiv = document.createElement('div');
-    todoDiv.classList.add('todo-div');
+    if(todoInput.value !== ''){
+        //saving to local storage
+        saveLocalTodos(todoInput.value);
 
-    //create new item
-    const newTodo = document.createElement('li');
-    newTodo.innerText = todoInput.value;
-    newTodo.classList.add('todo-item');
-    todoDiv.appendChild(newTodo);
+        const todoDiv = document.createElement('div');
+        todoDiv.classList.add('todo-div');
 
-    //Creating Complete Button
-    const completeButton = document.createElement('button');
-    completeButton.classList.add('complete-btn');
-    completeButton.innerHTML = `<i class="fas fa-check"></i>`;
-    todoDiv.appendChild(completeButton);
+        //create new item
+        const newTodo = document.createElement('li');
+        newTodo.innerText = todoInput.value;
+        newTodo.classList.add('todo-item');
+        todoDiv.appendChild(newTodo);
 
-    //creating Delete Button
-    const deleteButton = document.createElement('button');
-    deleteButton.classList.add('delete-btn');
-    deleteButton.innerHTML = `<i class="fas fa-trash"></i>`;
-    todoDiv.appendChild(deleteButton);
-    
+        //Creating Complete Button
+        const completeButton = document.createElement('button');
+        completeButton.classList.add('complete-btn');
+        completeButton.innerHTML = `<i class="fas fa-check"></i>`;
+        todoDiv.appendChild(completeButton);
 
-    todoList.appendChild(todoDiv);
-    todoInput.value = "";
+        //creating Delete Button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-btn');
+        deleteButton.innerHTML = `<i class="fas fa-trash"></i>`;
+        todoDiv.appendChild(deleteButton);
+        
+
+        todoList.appendChild(todoDiv);
+        todoInput.value = "";
+    }
 }
 
 todoList.addEventListener('click',e => {
@@ -105,4 +109,28 @@ function getTodos(){
 
         todoList.appendChild(todoDiv);
     });
+}
+function addFilterTodo(e){
+    let todos = todoList.childNodes;
+    switch(e.target.value){
+        case 'all':
+                todos.forEach(todo =>{
+                    todo.style.display = 'flex';
+                });
+                break;
+        case 'completed':
+                todos.forEach(todo=>{
+                    if(todo.classList.contains('completed'))
+                        todo.style.display = 'flex';
+                    else todo.style.display = 'none';
+                });
+                break;
+        case 'uncompleted':
+            todos.forEach(todo=>{
+            if(todo.classList.contains('completed'))
+                todo.style.display = 'none';
+            else todo.style.display = 'flex';
+        });
+        break;
+    }
 }
